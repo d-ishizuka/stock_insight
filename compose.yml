@@ -1,80 +1,42 @@
-version: "3.7"
-
+version: "3.8"
 services:
-  web-back:
-    container_name: python-backend
-    env_file: ./backend/web-back/.env
-    build: ./backend/web-back/.
-    volumes:
-      - ./backend/web-back:/code/
-      - static_volume:/code/staticfiles # <-- bind the static volume
-    stdin_open: true
+  frontend:
+    container_name: frontend #コンテナ名を指定
+    build:
+      context: frontend
     tty: true
-    command: gunicorn --bind :8000 config.wsgi:application
-    networks:
-      - backend_network
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-      - DJANGO_SETTINGS_MODULE=config.local_settings
-    depends_on:
-      - db
-      - backend-server
-
-  backend-server:
-    container_name: nginx_back
-    build:
-      context: ./backend/nginx/.
-      dockerfile: Dockerfile.dev
     volumes:
-      - static_volume:/code/staticfiles # <-- bind the static volume
+      - ./frontend:/frontend
     ports:
-      - "8080:80"
-    networks:
-      - backend_network
-
+      - 3001:3000
+    environment:
+      - WATCHPACK_POLLING=true #ホットリロード（ソースコードを即時にアプリケーションに反映）
+    extra_hosts:
+      - host.docker.internal:host-gateway
+  backend:
+    container_name: backend #コンテナ名を指定
+    build:
+      context: backend
+      args:
+        - environment_name=production #環境変数を指定。本番用のbackend/config/settings/production.pyを参照する
+    tty: true
+    volumes:
+      - ./backend:/backend
+    ports:
+      - 8000:8000
+    # depends_on:
+    #   - db
+    extra_hosts:
+      - host.docker.internal:host-gateway
   db:
-    platform: linux/amd64
-    build: ./mysql
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    ports:
-      - "3310:3306"
+    container_name: db #コンテナ名を指定
+    image: mysql:8
+    command:
+      --collation-server=utf8mb4_0900_bin
+      --transaction-isolation=READ-COMMITTED
+    restart: always #host起動時に自動起動
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: stockMillionaire
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      TZ: 'Asia/Tokyo'
-    volumes:
-      - ./mysql_volume:/var/lib/mysql
-      - ./sql:/docker-entrypoint-initdb.d
-    networks:
-      - backend_network
-
-  web-front:
-    image: node:20.13.1
-    volumes:
-      - ./frontend/web-front:/home/app/frontend
+      MYSQL_ROOT_PASSWORD: password #初期パスワード
+      TZ: Asia/Tokyo #タイムゾーンを東京に
     ports:
-      - 3000:3000
-    working_dir: /home/app/frontend
-    command: [bash, -c, yarn upgrade --no-progress --network-timeout 1000000 && yarn run dev]
-    networks:
-      - frontend_network
-  frontend-server:
-    container_name: nginx_frontend
-    build:
-      context: ./frontend/nginx/.
-      dockerfile: Dockerfile.dev
-    ports:
-      - "80:80"
-    depends_on:
-      - web-front
-    networks:
-      - frontend_network
-networks:
-  backend_network:
-    driver: bridge
-  frontend_network:
-    driver: bridge
-volumes:
-  static_volume:
+      - 53306:3306
