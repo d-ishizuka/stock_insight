@@ -5,7 +5,11 @@ ARG evironment_name
 ENV evironment_name=$environment_name
 
 WORKDIR /backend
+
+# マウントしているのにファイルがないとエラーになるので、一旦ファイルをコピー
+COPY . /backend
+
 RUN pip install -r requirements.lock
 
 # Djangoを起動
-# ENTRYPOINT python manage.py runserver 0.0.0.0:8000 --settings config.settings.${evironment}
+ENTRYPOINT python manage.py runserver 0.0.0.0:8000 --settings=config.settings.development

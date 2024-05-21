@@ -13,6 +13,7 @@ services:
       - WATCHPACK_POLLING=true #ホットリロード（ソースコードを即時にアプリケーションに反映）
     extra_hosts:
       - host.docker.internal:host-gateway
+  
   backend:
     container_name: backend #コンテナ名を指定
     build:
@@ -24,10 +25,11 @@ services:
       - ./backend:/backend
     ports:
       - 8000:8000
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
     extra_hosts:
       - host.docker.internal:host-gateway
+  
   db:
     container_name: db #コンテナ名を指定
     image: mysql:8
@@ -38,5 +40,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password #初期パスワード
       TZ: Asia/Tokyo #タイムゾーンを東京に
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
     ports:
       - 53306:3306
+
+volumes:
+  db_data:
