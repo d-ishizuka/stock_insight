@@ -1,1 +1,2 @@
-/mysql_volume
+backend/config/__pycache__/
+backend/config/settings/__pycache__/
