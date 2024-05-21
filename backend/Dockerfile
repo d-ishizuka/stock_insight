@@ -4,11 +4,8 @@ FROM python:3.12-bullseye
 ARG evironment_name
 ENV evironment_name=$environment_name
 
-# codeというディレクトリを作成しソースコードを配置、pip installでライブラリをインストール
-RUN mkdir /code
-WORKDIR /code
-COPY . /code/
+WORKDIR /backend
 RUN pip install -r requirements.lock
 
 # Djangoを起動
-ENTRYPOINT python manage.py runserver 0.0.0.0:8000 --settings config.settings.${evironment}
+# ENTRYPOINT python manage.py runserver 0.0.0.0:8000 --settings config.settings.${evironment}
