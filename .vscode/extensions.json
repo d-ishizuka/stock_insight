@@ -1,0 +1,34 @@
+{
+    "recommendations": [
+        // 作業効率化
+        "github.copilot",
+        "github.copilot-chat",
+        "eamodio.gitlens",
+        "visualstudioexptteam.vscodeintellicode",
+
+        // frontend
+        "dbaeumer.vscode-eslint",
+        "stylelint.vscode-stylelint",
+        "esbenp.prettier-vscode",
+        "christian-kohler.path-intellisense",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag",
+        "MariusAlchimavicius.json-to-ts",
+        "wix.vscode-import-cost",
+
+        // Tools
+        "donjayamanne.githistory",
+        "exiasr.hadolint",
+        "ms-azuretools.vscode-docker",
+
+        // Language
+        "MS-CEINTL.vscode-language-pack-ja",
+
+        // Theme
+        "oderwat.indent-rainbow",
+        "vscode-icons-team.vscode-icons",
+
+        // mobwork
+        "MS-vsliveshare.vsliveshare"
+    ]
+}

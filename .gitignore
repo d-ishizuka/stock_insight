@@ -1,2 +1,3 @@
 backend/config/__pycache__/
 backend/config/settings/__pycache__/
+frontend/node_modules/
