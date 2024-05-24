@@ -8,12 +8,12 @@ services:
     volumes:
       - ./frontend:/frontend
     ports:
-      - 3001:3000
+      - 3001:5173
     environment:
       - WATCHPACK_POLLING=true #ホットリロード（ソースコードを即時にアプリケーションに反映）
     extra_hosts:
       - host.docker.internal:host-gateway
-  
+
   backend:
     container_name: backend #コンテナ名を指定
     build:
@@ -29,7 +29,7 @@ services:
       - db
     extra_hosts:
       - host.docker.internal:host-gateway
-  
+
   db:
     container_name: db #コンテナ名を指定
     image: mysql:8
