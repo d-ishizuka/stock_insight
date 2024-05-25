@@ -1,11 +1,11 @@
-import { Header } from "./components/Header"
+import { MiniDrawer } from "./components/Navbar"
 
 function App() {
 
   return (
     <>
       <div className="content">
-        <Header />
+        <MiniDrawer />
       </div>
     </>
   )
