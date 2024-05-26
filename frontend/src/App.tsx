@@ -13,18 +13,14 @@ function App() {
 
   return (
     <>
-      <div className="content">
-        <MiniDrawer />
-      </div>
-
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="users/:id/search" element={<Search />} />
-        <Route path="users/:id/favorites" element={<Favorites />} />
-        <Route path="users/:id/news" element={<News />} />
-        <Route path="calender" element={<Calender />} />
-        <Route path="users/:id/notes" element={<Note />} />
-        <Route path="users/:id/settings" element={<Settings />} />
+        <Route path="/" element={<MiniDrawer contents={<Home />}/>} />
+        <Route path="users/:id/search" element={<MiniDrawer contents={<Search />}/>} />
+        <Route path="users/:id/favorites" element={<MiniDrawer contents={<Favorites />}/>} />
+        <Route path="users/:id/news" element={<MiniDrawer contents={<News />}/>} />
+        <Route path="calendar" element={<MiniDrawer contents={<Calender />}/>} />
+        <Route path="users/:id/notes" element={<MiniDrawer contents={<Note />}/>} />
+        <Route path="users/:id/settings" element={<MiniDrawer contents={<Settings />}/>} />
         <Route path="login" element={<Login />} />
       </Routes>
     </>

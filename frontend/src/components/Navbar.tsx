@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
@@ -91,7 +91,11 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export const MiniDrawer = () => {
+interface MinDrawerProps {
+  contents: ReactNode;
+}
+
+export const MiniDrawer: React.FC<MinDrawerProps> = ({contents}) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -162,6 +166,7 @@ export const MiniDrawer = () => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
+        {contents}
       </Box>
     </Box>
   );
