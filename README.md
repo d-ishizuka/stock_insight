@@ -1,1 +1,1 @@
-# stock_millionaire
+# stock_insight
