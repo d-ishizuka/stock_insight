@@ -7,6 +7,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
 
+// TODO: user_idを埋めて動的にリンクを生成する
 export const NavbarData = [
   {
     title: "ホーム",
@@ -16,17 +17,17 @@ export const NavbarData = [
   {
     title: "検索",
     icon: <SearchIcon />,
-    link: "/search",
+    link: "/users/1/search",
   },
   {
     title: "お気に入り",
     icon: <FavoriteIcon />,
-    link: "/favorites",
+    link: "/users/1/favorites",
   },
   {
     title: "ニュース",
     icon: <NewspaperIcon />,
-    link: "/news",
+    link: "/users/1/news",
   },
   {
     title: "決算・イベント",
@@ -34,13 +35,13 @@ export const NavbarData = [
     link: "/calendar",
   },
   {
-    title: "売買日記",
+    title: "売買記録",
     icon: <NoteAltIcon />,
-    link: "/notes",
+    link: "/users/1/notes",
   },
   {
     title: "設定",
     icon: <SettingsIcon />,
-    link: "/settings",
+    link: "/users/1/settings",
   }
 ]
