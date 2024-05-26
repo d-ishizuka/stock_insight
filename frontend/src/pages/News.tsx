@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const News = () => {
+export const News: React.FC = () => {
   return (
     <div>
       <h1>News</h1>
