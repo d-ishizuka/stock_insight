@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.flexItem {
+  width: 50px;
+  margin-right: 10px;
+}
+
+input {
+  border: none;
+  font-size: 24px;
+}
+
+.block {
+  display: inline-block;
+}
+
+.input-right {
+  text-align: right;
+}
