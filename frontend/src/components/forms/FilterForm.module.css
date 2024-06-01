@@ -1,0 +1,42 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.rangeInput {
+  display: flex;
+  align-items: center;
+}
+
+input[type="number"] {
+  width: 60px;
+  margin: 0 10px;
+}
+
+.track {
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  position: relative;
+  width: 100%;
+  margin: 0 10px;
+}
+
+.thumb {
+  height: 16px;
+  width: 16px;
+  background: #999;
+  border-radius: 50%;
+  position: absolute;
+}

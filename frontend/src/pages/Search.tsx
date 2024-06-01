@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { SlideBar } from '../components/forms/SlideBar';
+import FilterForm from '../components/forms/FilterForm';
 
 export const Search: React.FC = () => {
   return (
     <div>
-      <h1>Search</h1>
-      <SlideBar />
+      <FilterForm />
     </div>
   );
 }
