@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 300px;
+}
+
+.form h3 {
+  margin-block-start: 0.25em;
+  margin-block-end: 0.25em;
 }
 
 .field {

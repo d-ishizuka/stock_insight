@@ -3,25 +3,34 @@ import { Range } from 'react-range';
 import styles from './FilterForm.module.css';
 
 const FilterForm = () => {
-  const [pbr, setPbr] = useState([-3, 15]);
+  const [industry, setIndustry] = useState('');
+  const [pbr, setPbr] = useState([-3, 20]);
   const [per, setPer] = useState([-3, 50]);
   const [dividedYield, setDividedYield] = useState([0, 20]);
   const [payoutRatio, setPayoutRatio] = useState([0, 100]);
   const [equityRatio, setEquityRatio] = useState([-10, 100]);
   const [sigma, setSigma] = useState([-3, 3]);
 
-  const handleSliderChange = (setter) => (values) => { setter(values)};
+  const handleSliderChange = (setter) => (values) => { setter(values) };
+  const handleSelectChange = (e) => { setIndustry(e.target.value); };
 
   return (
     <form className={styles.form}>
-      <p>株式データ</p>
+      <h3>ファンダメンタルデータ</h3>
+      <div className={styles.field}>
+        <label>業種選択</label>
+        <select value={industry} onChange={handleSelectChange}>
+          <option value="all">全ての業種</option>
+          <option value="finance">金融</option>
+        </select>
+      </div>
       <div className={styles.field}>
         <label>PBR</label>
         <div className={styles.rangeInput}>
           <input
             type="number"
             min={-3}
-            max={15}
+            max={20}
             step={0.1}
             value={pbr[0]}
             onChange={(e) => setPbr([Number(e.target.value), pbr[1]])}
@@ -29,7 +38,7 @@ const FilterForm = () => {
           <Range
             step={0.1}
             min={-3}
-            max={15}
+            max={20}
             values={pbr}
             onChange={handleSliderChange(setPbr)}
             renderTrack={({ props, children }) => (
@@ -42,7 +51,7 @@ const FilterForm = () => {
           <input
             type="number"
             min={-3}
-            max={15}
+            max={20}
             step={0.1}
             value={pbr[1]}
             onChange={(e) => setPbr([pbr[0], Number(e.target.value)])}
@@ -56,7 +65,7 @@ const FilterForm = () => {
           <input
             type="number"
             min={-3}
-            max={15}
+            max={50}
             step={0.1}
             value={per[0]}
             onChange={(e) => setPbr([Number(e.target.value), per[1]])}
@@ -64,7 +73,7 @@ const FilterForm = () => {
           <Range
             step={0.1}
             min={-3}
-            max={100}
+            max={50}
             values={per}
             onChange={handleSliderChange(setPer)}
             renderTrack={({ props, children }) => (
@@ -77,7 +86,7 @@ const FilterForm = () => {
           <input
             type="number"
             min={-3}
-            max={15}
+            max={50}
             step={0.1}
             value={per[1]}
             onChange={(e) => setPbr([per[0], Number(e.target.value)])}
@@ -187,6 +196,28 @@ const FilterForm = () => {
             value={equityRatio[1]}
             onChange={(e) => setEquityRatio([equityRatio[0], Number(e.target.value)])}
           />
+        </div>
+      </div>
+
+      <h3>株価データ</h3>
+      <div className={styles.field}>
+        <label>25日移動平均線に対する分散値</label>
+        <div className={styles.rangeInput}>
+          <input type="number" value={sigma[0]} onChange={(e) => setSigma([Number(e.target.value), sigma[1]])} />
+          <Range
+            step={0.1}
+            min={-3}
+            max={3}
+            values={sigma}
+            onChange={handleSliderChange(setSigma)}
+            renderTrack={({ props, children }) => (
+              <div {...props} className={styles.track}>
+                {children}
+              </div>
+            )}
+            renderThumb={({ props }) => <div {...props} className={styles.thumb} />}
+          />
+          <input type="number" value={sigma[1]} onChange={(e) => setSigma([sigma[0], Number(e.target.value)])} />
         </div>
       </div>
     </form>
