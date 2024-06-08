@@ -12,7 +12,9 @@ const FilterForm = () => {
   const [sigma, setSigma] = useState([-3, 3]);
 
   const [stockOptions, setStockOptions] = useState({
-    fiveDaysMARise: false
+    fiveDaysMARise: false,
+    twentyFiveDaysMARise: false,
+    seventyFiveDaysMARise: false
   })
 
   const handleSliderChange = (setter) => (values) => { setter(values) };
@@ -212,6 +214,18 @@ const FilterForm = () => {
         <label>
           <input type="checkbox" name="fiveDaysMARise" checked={stockOptions.fiveDaysMARise} onChange={handleCheckboxChange(setStockOptions)}/>
           5日移動平均線が上昇している
+        </label>
+      </div>
+      <div className={styles.field}>
+        <label>
+          <input type="checkbox" name="twentyFiveDaysMARise" checked={stockOptions.twentyFiveDaysMARise} onChange={handleCheckboxChange(setStockOptions)}/>
+          25日移動平均線が上昇している
+        </label>
+      </div>
+      <div className={styles.field}>
+        <label>
+          <input type="checkbox" name="seventyFiveDaysMARise" checked={stockOptions.seventyFiveDaysMARise} onChange={handleCheckboxChange(setStockOptions)}/>
+          75日移動平均線が上昇している
         </label>
       </div>
       <div className={styles.field}>
