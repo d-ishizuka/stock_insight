@@ -11,8 +11,16 @@ const FilterForm = () => {
   const [equityRatio, setEquityRatio] = useState([-10, 100]);
   const [sigma, setSigma] = useState([-3, 3]);
 
+  const [stockOptions, setStockOptions] = useState({
+    fiveDaysMARise: false
+  })
+
   const handleSliderChange = (setter) => (values) => { setter(values) };
   const handleSelectChange = (e) => { setIndustry(e.target.value); };
+  const handleCheckboxChange = (setter) => (e) => {
+    const {name, checked } = e.target;
+    setter((prevState) => ({ ...prevState, [name]: checked}));
+  };
 
   return (
     <form className={styles.form}>
@@ -200,6 +208,12 @@ const FilterForm = () => {
       </div>
 
       <h3>株価データ</h3>
+      <div className={styles.field}>
+        <label>
+          <input type="checkbox" name="fiveDaysMARise" checked={stockOptions.fiveDaysMARise} onChange={handleCheckboxChange(setStockOptions)}/>
+          5日移動平均線が上昇している
+        </label>
+      </div>
       <div className={styles.field}>
         <label>25日移動平均線に対する分散値</label>
         <div className={styles.rangeInput}>
