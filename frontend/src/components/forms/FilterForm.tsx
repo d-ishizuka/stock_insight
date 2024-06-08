@@ -14,7 +14,9 @@ const FilterForm = () => {
   const [stockOptions, setStockOptions] = useState({
     fiveDaysMARise: false,
     twentyFiveDaysMARise: false,
-    seventyFiveDaysMARise: false
+    seventyFiveDaysMARise: false,
+    sixMonthsMARise: false,
+    oneYearMARise: false
   })
 
   const handleSliderChange = (setter) => (values) => { setter(values) };
@@ -226,6 +228,18 @@ const FilterForm = () => {
         <label>
           <input type="checkbox" name="seventyFiveDaysMARise" checked={stockOptions.seventyFiveDaysMARise} onChange={handleCheckboxChange(setStockOptions)}/>
           75日移動平均線が上昇している
+        </label>
+      </div>
+      <div className={styles.field}>
+        <label>
+          <input type="checkbox" name="sixMonthsMARise" checked={stockOptions.sixMonthsMARise} onChange={handleCheckboxChange(setStockOptions)}/>
+          半年間の移動平均線が上昇している
+        </label>
+      </div>
+      <div className={styles.field}>
+        <label>
+          <input type="checkbox" name="oneYearMARise" checked={stockOptions.oneYearMARise} onChange={handleCheckboxChange(setStockOptions)}/>
+          1年間の移動平均線が上昇している
         </label>
       </div>
       <div className={styles.field}>
