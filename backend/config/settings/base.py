@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config, Csv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
 
     # Third-party
     'rest_framework',
+    'corsheaders',
     'django_extensions',
 
     # My apps
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -142,3 +146,8 @@ LOGGING = {
         }
     }
 }
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = config('TRUSTED_ORIGINS', cast=Csv())
+# プリフライト(事前リクエスト)の設定
+CORS_PREFLIGHT_MAX_AGE = 60 * 60
