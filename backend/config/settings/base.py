@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     # Third-party
     'rest_framework',
+    'django_extensions',
 
     # My apps
     'stock_insight',
