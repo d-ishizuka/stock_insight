@@ -23,6 +23,7 @@ services:
       args:
         - environment_name=production #環境変数を指定。本番用のbackend/config/settings/production.pyを参照する
     tty: true
+    stdin_open: true
     volumes:
       - ./backend:/backend
     ports:
