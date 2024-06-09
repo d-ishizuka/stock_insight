@@ -1,3 +1,5 @@
 backend/config/__pycache__/
 backend/config/settings/__pycache__/
+backend/stock_insight/__pycache__/
+backend/stock_insight/migrations/__pycache__/
 frontend/node_modules/
